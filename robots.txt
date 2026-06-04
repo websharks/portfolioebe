@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://websharks.github.io/portfolioebe/sitemap.xml

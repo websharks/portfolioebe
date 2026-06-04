@@ -6,6 +6,7 @@ const statNumbers = document.querySelectorAll('.stat__number');
 const buttonLinks = document.querySelectorAll('.button, .social-link, .social__icon, .nav__logo');
 const animatedCards = document.querySelectorAll('.skill-card, .expertise__item, .expertise-card, .work__card, .timeline__card, .timeline__entry, .education__card, .contact__info-box, .contact__form, .about__intro-block');
 const heroRoles = document.getElementById('hero-roles');
+const contactForm = document.getElementById('contactForm');
 
 document.documentElement.style.scrollBehavior = 'smooth';
 
@@ -79,6 +80,34 @@ if (heroRoles) {
 
     typeRole();
     window.addEventListener('beforeunload', () => clearTimeout(timer));
+}
+
+if (contactForm) {
+    contactForm.addEventListener('submit', event => {
+        event.preventDefault();
+
+        const name = document.getElementById('contactName')?.value.trim();
+        const email = document.getElementById('contactEmail')?.value.trim();
+        const message = document.getElementById('contactMessage')?.value.trim();
+
+        if (!name || !email || !message) return;
+
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) return;
+
+        const whatsappNumber = '919843058417';
+        const text = [
+            "Hi! I'm interested in your services.",
+            '',
+            `Name: ${name}`,
+            `Email: ${email}`,
+            `Message: ${message}`
+        ].join('\n');
+
+        const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
+        window.location.assign(whatsappUrl);
+        contactForm.reset();
+    });
 }
 
 /*===== ACTIVE LINK ON SCROLL =====*/
